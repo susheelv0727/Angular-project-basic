@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { JsonPipe, NgIf } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe, NgIf],
+  imports: [ReactiveFormsModule, JsonPipe],
   template: `
     <h2>Reactive Form Example</h2>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -13,17 +13,17 @@ import { JsonPipe, NgIf } from '@angular/common';
         Name:
         <input formControlName="name">
       </label>
-      <div *ngIf="form.controls.name.invalid && form.controls.name.touched">
-        Name is required (min 3 chars).
-      </div>
+      @if (form.controls.name.invalid && form.controls.name.touched) {
+        <div>Name is required (min 3 chars).</div>
+      }
 
       <label>
         Email:
         <input formControlName="email">
       </label>
-      <div *ngIf="form.controls.email.invalid && form.controls.email.touched">
-        Enter a valid email.
-      </div>
+      @if (form.controls.name.invalid && form.controls.name.touched) {
+        <div>Enter a valid email.</div>
+      }
 
       <button type="submit" [disabled]="form.invalid">Submit</button>
     </form>
